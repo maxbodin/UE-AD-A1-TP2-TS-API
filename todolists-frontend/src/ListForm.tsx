@@ -1,5 +1,4 @@
-import { Form, Input, Button } from 'antd';
-import { useState } from 'react';
+import { Button, Form, Input } from "antd";
 
 interface ListFormProps {
   onListAdded?: (listName: string) => void;
@@ -17,15 +16,15 @@ export const ListForm = ({ onListAdded }: ListFormProps) => {
 
   return (
     <Form
-      form={form}
-      onFinish={handleSubmit}
+      form={ form }
+      onFinish={ handleSubmit }
       layout="inline"
     >
       <Form.Item
         name="listName"
-        rules={[{ required: true, message: 'Please enter a list name' }]}
+        rules={ [{ required: true, message: "Please enter a list name" }] }
       >
-        <Input placeholder="Enter list name" />
+        <Input placeholder="Enter list name"/>
       </Form.Item>
 
       <Form.Item>

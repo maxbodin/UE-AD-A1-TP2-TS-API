@@ -1,11 +1,11 @@
 export interface Item {
-    id: string;
-    name: string;
-    listId: string;
-    status: string;
-    // TODO : user: User;
-    // TODO : Assigning an item to an User + creating User interface.
-    // TODO : If all the items of a list are DONE, then the list as a DONE status too.
+  id: string;
+  name: string;
+  listId: string;
+  status: string;
+  // TODO : user: User;
+  // TODO : Assigning an item to an User + creating User interface.
+  // TODO : If all the items of a list are DONE, then the list as a DONE status too.
 }
 
 /*

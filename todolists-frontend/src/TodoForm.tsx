@@ -1,4 +1,4 @@
-import { Form, Input, Button } from 'antd';
+import { Button, Form, Input } from "antd";
 
 interface TodoFormProps {
   onTodoAdded?: (todo: string) => void;
@@ -16,15 +16,15 @@ export const TodoForm = ({ onTodoAdded }: TodoFormProps) => {
 
   return (
     <Form
-      form={form}
-      onFinish={handleSubmit}
+      form={ form }
+      onFinish={ handleSubmit }
       layout="inline"
     >
       <Form.Item
         name="todo"
-        rules={[{ required: true, message: 'Please enter a todo item' }]}
+        rules={ [{ required: true, message: "Please enter a todo item" }] }
       >
-        <Input placeholder="Enter todo item" />
+        <Input placeholder="Enter todo item"/>
       </Form.Item>
 
       <Form.Item>

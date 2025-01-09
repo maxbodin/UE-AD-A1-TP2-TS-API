@@ -1,5 +1,5 @@
 export type {
-  Def0 as ITodoList,
-  Def1 as TodoListStatus
-} from 'todo-list-client'
+  Def0 as List,
+  Def1 as Item
+} from "todo-list-client";
 
