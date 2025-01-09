@@ -1,20 +1,21 @@
 import { Button, Layout, List, Menu, MenuProps } from "antd";
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from "@ant-design/icons";
 import { apiClient } from "./api-client";
 import { useEffect, useState } from "react";
 import { ListForm } from "./ListForm";
 import { TodoForm } from "./TodoForm";
+import { Item, List as TodoList } from "./api-types";
+
 const { Header, Content, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
+type MenuItem = Required<MenuProps>["items"][number];
 
 export default function App() {
-  // TODO use correct types instead of any
-  const [lists, setLists] = useState<any[]>([]);
-  const [selectedList, setSelectedList] = useState<any | null>(null);
+  const [lists, setLists] = useState<TodoList[]>([]);
+  const [selectedList, setSelectedList] = useState<TodoList | null>(null);
   const [showListForm, setShowListForm] = useState(false);
   const [showTodoForm, setShowTodoForm] = useState(false);
-  const [selectedListItems, setSelectedListItems] = useState<string[]>([]);
+  const [selectedListItems, setSelectedListItems] = useState<Item[]>([]);
 
   useEffect(() => {
     apiClient.getLists().then(setLists);
@@ -22,76 +23,77 @@ export default function App() {
 
   useEffect(() => {
     if (selectedList) {
-      apiClient.getTodos(selectedList).then(setSelectedListItems);
+      apiClient.getTodos(selectedList.id).then(setSelectedListItems);
     }
   }, [selectedList]);
 
   const handleItemClick = (key: string) => {
-    if (key === 'add') {
+    if (key === "add") {
       setSelectedList(null);
       setShowListForm(true);
     } else {
-      setSelectedList(key);
+      const list = lists.find((list) => list.id === key) || null;
+      setSelectedList(list);
     }
-  }
+  };
 
-  // TODO: fix any, use type from API
-  const items: MenuItem[] = lists.map((list: any) => ({
+  const items: MenuItem[] = lists.map((list) => ({
     key: list.id,
     label: list.name
   }));
 
   function handleListAdded(listName: string): void {
-    console.debug('-- handleListAdded', listName);
-    apiClient.addList(listName).then((result) => {
-      console.debug('-- handleListAdded result', result);
-      setLists(result)
+    apiClient.addList(listName).then((updatedLists) => {
+      setLists(updatedLists); // Updated lists returned by the API.
     });
     setShowListForm(false);
   }
 
   function handleTodoAdded(todo: string): void {
     if (selectedList) {
-      apiClient.addTodo(selectedList, todo).then(setSelectedListItems);
+      apiClient.addTodo(selectedList.id, todo).then((updatedItems) => {
+        setSelectedListItems(updatedItems); // Updated todos returned by the API.
+      });
     }
     setShowTodoForm(false);
   }
 
+
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Header style={{ display: 'flex', alignItems: 'center', color: 'white' }}>
-          TODO LISTS
+    <Layout style={ { minHeight: "100vh" } }>
+      <Header style={ { display: "flex", alignItems: "center", color: "white" } }>
+        TODO LISTS
       </Header>
       <Layout>
-        <Sider width={200} style={{ background: 'black' }}>
+        <Sider width={ 200 } style={ { background: "black" } }>
           <Menu
             theme="dark"
             mode="inline"
-            items={[{key: 'add', label: 'Add list', icon: <PlusOutlined />}, ...items]}
-            onClick={(e) => handleItemClick(e.key)}
+            items={ [{ key: "add", label: "Add list", icon: <PlusOutlined/> }, ...items] }
+            onClick={ (e) => handleItemClick(e.key) }
           />
         </Sider>
         <Content
-          style={{
-          padding: 24,
-          margin: 0,
-          minHeight: 280,
-          }}    
+          style={ {
+            padding: 24,
+            margin: 0,
+            minHeight: 280,
+          } }
         >
-          {showListForm && <ListForm onListAdded={handleListAdded} />}
-          {selectedList && 
+          { showListForm && <ListForm onListAdded={ handleListAdded }/> }
+          { selectedList && (
             <div>
-              <Button onClick={() => setShowTodoForm(true)}>Add Todo</Button>
+              <Button onClick={ () => setShowTodoForm(true) }>Add Todo</Button>
               <List
-                dataSource={selectedListItems}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
+                dataSource={ selectedListItems }
+                renderItem={ (item) => <List.Item>{ item.name }</List.Item> }
               />
             </div>
-          }
-          {!selectedList && !showListForm && <div>Select a list</div>}    
-          {showTodoForm && <TodoForm onTodoAdded={handleTodoAdded} />}
+          ) }
+          { !selectedList && !showListForm && <div>Select a list</div> }
+          { showTodoForm && <TodoForm onTodoAdded={ handleTodoAdded }/> }
         </Content>
       </Layout>
     </Layout>
-  )
+  );
 }
