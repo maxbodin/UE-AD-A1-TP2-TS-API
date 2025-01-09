@@ -1,10 +1,4 @@
-interface List {
-    id: string;
-    name: string;
-    items: Item[];
-}
-
-interface Item {
+export interface Item {
     id: string;
     name: string;
     listId: string;
@@ -22,7 +16,5 @@ enum Status {
     IN_PROGRESS,
     DONE
 }*/
-
-export type {List, Item};
 
 // TODO : /api-docs → La documentation OpenAPI

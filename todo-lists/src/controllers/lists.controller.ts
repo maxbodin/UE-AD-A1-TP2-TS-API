@@ -1,5 +1,6 @@
 import {FastifyReply, FastifyRequest} from "fastify";
-import {Item, List} from "../interfaces";
+import { List } from "../interfaces/list";
+import { Item } from "../interfaces/item";
 
 interface Params {
     id: string;
