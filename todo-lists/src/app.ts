@@ -31,6 +31,11 @@ const app: FastifyPluginAsync<AppOptions> = async (
         dir: join(__dirname, 'routes'),
         options: opts
     })
+
+    void fastify.register(require('@fastify/cors'), {
+        origin: 'http://localhost:3006', // Allow requests from this origin.
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    });
 };
 
 export default app;
