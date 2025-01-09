@@ -1,0 +1,38 @@
+services:
+  todo-list-api:
+    build:
+      context: ./todo-lists/
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./todo-lists/:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - db
+
+  todolists-frontend:
+    build:
+      context: ./todolists-frontend
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./todolists-frontend:/app
+      - /app/node_modules
+    ports:
+      - "3006:3006"
+    depends_on:
+      - todo-list-api
+
+  db:
+    image: redis:7.4.1
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

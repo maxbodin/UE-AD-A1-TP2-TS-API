@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "todo-list-client": {
+      "signature": "24e8e46cf7671f61522745d4df802278",
+      "file": true
+    }
+  }
+}
