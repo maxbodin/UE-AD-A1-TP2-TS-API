@@ -1,5 +1,9 @@
 // import { ITodoList, TodoListStatus } from './api-types'
-import { ItemsApi, ListsApi } from "todo-list-client";
+
+// import * as TodoClient from 'max-todo-list-client';
+// console.log("TodoClient", TodoClient);
+
+import { ItemsApi, ListsApi } from "max-todo-list-client";
 import { Item, List as TodoList } from "./api-types";
 import axios from "axios";
 

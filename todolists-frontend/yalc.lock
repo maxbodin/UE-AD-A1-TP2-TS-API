@@ -1,8 +1,8 @@
 {
   "version": "v1",
   "packages": {
-    "todo-list-client": {
-      "signature": "24e8e46cf7671f61522745d4df802278",
+    "max-todo-list-client": {
+      "signature": "4390960f18d5d6b2db176b4bae1d5084",
       "file": true
     }
   }

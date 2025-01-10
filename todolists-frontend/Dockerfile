@@ -16,13 +16,13 @@ RUN npm install -g typescript
 RUN npm install -g yalc
 
 # Link the local API client from the API build.
-# RUN npm link todo-list-client
+# RUN npm link max-todo-list-client
 
 # Copy the rest of the application code, excluding node_modules.
 COPY . . --chown=node:node/
 
 # Add the linked local package using Yalc.
-RUN yalc add todo-list-client
+RUN yalc add max-todo-list-client
 
 # Expose the frontend's port.
 EXPOSE 3006
