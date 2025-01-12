@@ -1,12 +1,16 @@
 # UE-AD-A1-TP2-TS-API
 
-This project consists of a **Frontend**, an **API**, and an **API Client** that allow users to create and manage todo lists. The API exposes endpoints to perform CRUD operations on todo lists, and the frontend provides a user-friendly interface to interact with these operations. The API Client is generated using **OpenAPI Generator** to ensure a consistent and easy-to-use interface for interacting with the API.
+This project consists of a **Frontend**, an **API**, and an **API Client** that allow users to create and manage todo
+lists. The API exposes endpoints to perform CRUD operations on todo lists, and the frontend provides a user-friendly
+interface to interact with these operations. The API Client is generated using **OpenAPI Generator** to ensure a
+consistent and easy-to-use interface for interacting with the API.
 
 ## Project Structure
 
 - **Frontend**: A React-based application that allows users to view and manage their todo lists.
 - **API**: A backend service that provides RESTful endpoints to create, update, and delete todo lists.
-- **API Client**: A utility to interact with the backend API from the frontend or other services, generated using OpenAPI Generator.
+- **API Client**: A utility to interact with the backend API from the frontend or other services, generated using
+  OpenAPI Generator.
 
 ## Features
 
@@ -33,7 +37,8 @@ This project uses **Docker** for easy deployment and running both frontend and A
     docker-compose up --build
     ```
 
-   This will start both the frontend and API services along with Redis in containers. By default, the frontend will be available at `http://localhost:3006`, and the API will run at `http://localhost:3000`.
+   This will start both the frontend and API services along with Redis in containers. By default, the frontend will be
+   available at `http://localhost:3006`, and the API will run at `http://localhost:3000`.
 
 ## API Endpoints
 
@@ -62,11 +67,13 @@ Here are the available API routes:
 
 ### Documentation
 
-- **GET /docs**: Access the API documentation generated with Swagger-UI. This route provides an interactive way to explore and test the API endpoints.
+- **GET /docs**: Access the API documentation generated with Swagger-UI. This route provides an interactive way to
+  explore and test the API endpoints.
 
 ## API Client
 
-The **API Client** is automatically generated using **OpenAPI Generator**. This ensures that the client is always in sync with the backend API, making it easier to interact with the endpoints in a consistent manner.
+The **API Client** is automatically generated using **OpenAPI Generator**. This ensures that the client is always in
+sync with the backend API, making it easier to interact with the endpoints in a consistent manner.
 
 To generate or update the client :
 
@@ -78,5 +85,6 @@ To generate or update the client :
 
 ## Links that were useful during development
 
-- [Using `npm link` with Docker Compose](https://www.reddit.com/r/docker/comments/9whbpu/use_npm_link_with_dockercompose/?rdt=43999)
+- [Using
+  `npm link` with Docker Compose](https://www.reddit.com/r/docker/comments/9whbpu/use_npm_link_with_dockercompose/?rdt=43999)
 - [Yalc npm package v1.0.0-pre.23](https://www.npmjs.com/package/yalc/v/1.0.0-pre.23)

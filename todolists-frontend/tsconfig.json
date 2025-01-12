@@ -21,7 +21,9 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "max-todo-list-client": ["node_modules/max-todo-list-client/dist"]
+      "max-todo-list-client": [
+        "node_modules/max-todo-list-client/dist"
+      ]
     }
   },
   "include": [
