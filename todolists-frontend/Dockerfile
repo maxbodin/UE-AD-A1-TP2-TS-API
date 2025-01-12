@@ -15,9 +15,6 @@ RUN npm install -g typescript
 # Install Yalc globally for handling local dependencies.
 RUN npm install -g yalc
 
-# Link the local API client from the API build.
-# RUN npm link max-todo-list-client
-
 # Copy the rest of the application code, excluding node_modules.
 COPY . . --chown=node:node/
 
